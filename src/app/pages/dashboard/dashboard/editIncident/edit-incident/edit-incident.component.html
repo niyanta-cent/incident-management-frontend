@@ -1,0 +1,66 @@
+
+
+<div>
+<p>Edit an incident</p>
+<h6 *ngIf="!isDataLoaded">Loading Please wait...</h6>
+<form #incidentForm="ngForm" (ngSubmit)="onIncidentEdit()">
+    
+    <mat-form-field appearance="fill">
+        <mat-label>Record Number</mat-label>
+        <!-- <input matInput formControlName="incidentRecordNumber" name="incidentRecordNumber" [(ngModel)]= "incident.incidentRecordNumber"> -->
+        <input matInput type="text" [disabled]="true" name="incidentRecordNumber" [(ngModel)]= "incident.incidentRecordNumber">
+    </mat-form-field>
+    
+
+    <mat-form-field appearance="fill">
+        <mat-label>Describe your issue</mat-label>
+        <textarea matInput name="incidentDescription" [(ngModel)]="incident.incidentDescription"></textarea>  
+    </mat-form-field>
+    <br>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Contact Number</mat-label>
+        <input matInput name="contactNumber" [(ngModel)]="incident.contactNumber">
+    </mat-form-field>
+    
+    
+    <ng-template [ngIf]="isuserTypeAdmin == true">
+        <mat-form-field appearance="fill">
+            <mat-label>Incident Status</mat-label>
+            <mat-select ngModel name="incidentStatus" [(ngModel)]="incident.incidentStatus">
+                <mat-option value="NEW">NEW</mat-option>
+                <mat-option value="IN-PROGRESS">IN-PROGRESS</mat-option>
+                <mat-option value="DISPATCHED">DISPATCHED</mat-option>
+            </mat-select>
+        </mat-form-field>
+      </ng-template>
+    
+   <br>
+    <mat-form-field appearance="fill">
+        <mat-label>Incident Priority</mat-label>
+        <mat-select ngModel name="incidentPriority" [(ngModel)]="incident.incidentPriority">
+            <mat-option value="Low">Low</mat-option>
+            <mat-option value="Medium">Medium</mat-option>
+            <mat-option value="High">High</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <br>
+
+
+    <mat-form-field appearance="fill">
+        <mat-label>Incident Type</mat-label>
+        <mat-select ngModel name="incidentType" [(ngModel)]="incident.incidentType">
+            <mat-option value="Software">Software</mat-option>
+            <mat-option value="Hardware">Hardware</mat-option>
+            <mat-option value="Network">Network</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <br>
+   
+    <br>
+    <mat-dialog-actions>
+        <button mat-button mat-dialog-close type="submit">Submit</button>
+        <button mat-button mat-dialog-close>Cancel</button>
+    </mat-dialog-actions>
+</form>
+</div>

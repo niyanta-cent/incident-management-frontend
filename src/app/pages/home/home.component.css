@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@500&display=swap');
+body {
+    font-family:'DM Sans','Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.container .jumbotron{
+    background-color: blueviolet;
+}
+.container {
+    max-width: 1300px;
+    margin: 0 auto;
+    overflow: auto;
+    padding: 0 40px;
+}
+.home-container1{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 40px;
+}
+.company-svg-section{
+    
+    
+}
+.company-content{
+    
+}
+.company-content p {
+    font-size: 50px;
+    margin-bottom: 0;
+    font-family:'DM Sans','Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.styleButton {
+    border-radius: 4px;
+    background-color: #4000ff;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 15px;
+    padding: 10px 16px;
+    /* width: 100px; */
+    /* transition: all 0.5s; */
+    cursor: pointer;
+    margin: 5px;
+}
+.styleButton:hover {
+    background-color: white;
+    color: #4000ff;
+    border: 1px solid #4000ff;
+    transition: transform 0.5s ease-in-out;
+}
+.home-services {
+    margin: 120px 0;
+}
+
+.service {
+    margin-bottom: 30px;
+}
+.home-service-section {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 3rem;
+    align-items: center;
+    justify-content: center;
+}
+.home-service-section h2 {
+    text-align: center;
+    font-size: 24px;
+}
+.service h2{
+    text-align: center;
+    font-size: 36px;
+}
+.home-service-section img {
+    height: 220px;
+    width: 300px;
+    
+}
+.home-service-card {
+    transition: transform 0.2s ease-in-out;
+    border: 1px solid #f6f6f8;
+    box-shadow: 0.5px 0.5px 1px 1px #4000ff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0;
+    padding: 50px 0;
+    opacity: 0.9;
+    border-radius: 15px 0 15px 0;
+    background-color: #f6f6f8;
+}
+.home-service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 1px 1px 2px 2px #4000ff;
+    opacity: 2;
+}
+
+@media screen and (max-width: 600px) {
+    .home-container1{
+        flex-direction: column;
+    }
+    .company-svg-section{
+        display: none;
+        
+    }
+    .company-content{
+        text-align: center;
+    }
+    .company-content p {
+        font-size: 35px;
+    }
+    .company-content h4{
+        font-size: 25px;
+    }
+    .home-service-section{
+        grid-template-columns: 1fr;
+    }
+}

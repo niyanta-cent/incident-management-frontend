@@ -1,0 +1,78 @@
+<style>
+	.form__input {
+	margin: 5px;
+}
+
+</style>	
+	
+	<!-- Main Content -->
+	<div class="container-fluid">
+		<div class="row main-content bg-success text-center">
+			<div class="col-md-4 text-center company__info">
+				<h1>Tickr</h1>
+				<span class="company__logo"><h2><span class="fa fa-android">
+					<img src="../../../assets/images/signup.png" alt="company-svg">
+				</span></h2>
+				</span>
+			</div>
+			<div class="col-md-8 col-xs-12 col-sm-12 login_form ">
+				<div class="container-fluid">
+					<div class="row">
+						<h2>Sign Up</h2>
+					</div>
+					<div class="row">
+						<form control="" class="form-group" #userForm = "ngForm" (ngSubmit)="onUserSignup(userForm)">
+							<div class="row">
+								<input type="text" name="firstName" id="firstName" required #firstName="ngModel" class="form__input" placeholder="First Name" [(ngModel)]="user.firstName">
+							</div>
+							<div class="row">
+								<input type="text" name="lastName" id="lastName" required #lastName="ngModel" class="form__input" placeholder="Last Name" [(ngModel)]="user.lastName">
+							</div>
+							<div class="row">
+								<!-- <span class="fa fa-lock"></span> -->
+								<input type="email" name="email" id="email" required email #email="ngModel" class="form__input" placeholder="Email" [(ngModel)]="user.email">
+							</div>
+							<div class="row">
+								<!-- <span class="fa fa-lock"></span> -->
+								<input type="number" name="contact" id="contact" required class="form__input" placeholder="Contact Number" [(ngModel)]="user.contact">
+							</div>
+                            <div class="row">
+								<!-- <span class="fa fa-lock"></span> -->
+								<input type="text" name="username" id="username" required class="form__input" placeholder="Username" [(ngModel)]="user.username">
+							</div>
+                            <div class="row">
+								<!-- <span class="fa fa-lock"></span> -->
+								<input type="password" name="password" id="password" required class="form__input" placeholder="Password" [(ngModel)]="user.password">
+							</div>
+                            <div class="row">
+								<!-- <span class="fa fa-lock"></span> -->
+								<input type="password" name="confirmpassword" id="confirmpassword" required class="form__input" placeholder="ConfirmPassword" [(ngModel)]="user.confirmPassword">
+							</div>
+							<!-- <div class="form-group">
+								<select class="custom-select" name="userType" [(ngModel)]="user.userType">
+									<option selected value="">--User Type--</option>
+									<option *ngFor="let type of types">{{type}}</option>
+								</select> 
+							</div> -->
+
+							<mat-form-field appearance="fill">
+								<mat-label>User Type</mat-label>
+								<mat-select filled required name="userType" [(ngModel)]="user.userType">
+								<mat-option value="Customer">Customer</mat-option>
+								<mat-option value="Admin">Admin</mat-option>
+								<!-- <mat-option value="[type]" *ngFor="let type of types">{{type}}</mat-option> -->
+								</mat-select>
+							</mat-form-field>
+							<h6 class="error-message-text">{{message}}</h6>
+							<div class="row mybtn">
+								<input type="submit" value="Submit" class="btn">
+							</div>
+						</form>
+					</div>
+					<div class="row">
+						<p>Already have an account? <a href="#">Login Here</a></p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>

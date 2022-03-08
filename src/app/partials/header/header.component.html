@@ -1,0 +1,112 @@
+<style>
+
+.nav-style-custom{
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+    background-color: var(--navbar-scroll);
+    transition: background-color 0.5s ease;
+    -webkit-box-shadow: var(--navbar-scroll-shadow);
+    box-shadow: var(--navbar-scroll-shadow);
+}
+
+.app-logo{
+    margin-left: 80px;
+}
+
+.nav-list-style{
+    margin-right: 60px;
+}
+
+li{
+    padding-top: 4px;
+    /* margin-right: 20px; */
+}
+
+a{
+    margin-right: 30px;
+}
+
+.styleButton {
+    border-radius: 4px;
+    background-color: #4000ff;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 15px;
+    padding: 10px 16px;
+    width: 100px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+}
+.styleButton:hover {
+    background-color: white;
+    color: #4000ff;
+    border: 1px solid #4000ff;
+    transition: transform 0.5s ease-in-out;
+}
+
+</style>
+  
+<div class="nav-style-custom">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light navbarStyle">
+        <a class="navbar-brand" href="/">
+            <!--Hitesh portfolio Logo -->
+            <img class="app-logo" src="../../../assets/images/logo_transparent.png" alt="logo" width="220" height="80">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse nav-list-style" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+            
+            
+
+            <ng-container *ngIf="(_loginService.authenticated$ | async) === false">
+
+            <li class="nav-item">
+                <a id="home-nav-bar" class="nav-link active" aria-current="page" routerLink="/"><strong>Home</strong></a>
+            </li>
+
+            <a href="/login">
+                <button type="button" class="styleButton">
+                    <span>Login</span>
+                </button>
+            </a>
+
+            <a href="/signup">
+            <button type="button" class="styleButton">
+                <span>Signup</span>
+            </button>
+            </a>
+            
+            </ng-container>
+
+            <ng-container *ngIf="(_loginService.authenticated$ | async) === true">
+                <a>
+                    <button type="button" class="styleButton" (click)="openProfileDialogBox()">
+                        
+                        <span>
+                            <!-- <mat-icon class="action-buttons-icons">insert_emoticon</mat-icon> -->
+                            {{_loginService.usernameNavbar}}
+                        </span>
+                    </button>
+                </a>
+                <a>
+                <button type="button" class="styleButton" (click)="onLogoutClick()">
+                    <span>Logout</span>
+                </button>
+                </a>
+            </ng-container>      
+            
+            </ul>
+            
+        </div>
+
+    </nav>
+</div>
+
+        

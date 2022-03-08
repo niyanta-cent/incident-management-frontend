@@ -1,0 +1,12 @@
+mat-dialog-actions button{
+    text-align: center;
+    margin: auto;
+    background-color: #4000ff;
+    color: white;
+  }
+  mat-dialog-actions button:hover {
+    background-color: white;
+    color: #4000ff;
+    border: 1px solid #4000ff;
+    transition: transform 0.5s ease-in-out;
+  }

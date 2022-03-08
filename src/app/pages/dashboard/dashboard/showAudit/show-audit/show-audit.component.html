@@ -1,0 +1,13 @@
+<div class="audit-container">
+<p>Audit Data</p>
+
+<h6 *ngIf="!isDataLoaded">Loading Please wait...</h6>
+
+<ul *ngFor="let log of auditLogs">
+    <li>{{log.action}}</li>
+</ul>
+
+<mat-dialog-actions>
+    <button mat-button mat-dialog-close>Cancel</button>
+</mat-dialog-actions>
+</div>

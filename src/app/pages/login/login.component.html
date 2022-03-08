@@ -1,0 +1,43 @@
+<!-- incidentm57@gmail.com -->
+
+	<div class="container-fluid">
+	<div class="row main-content bg-success text-center logo">
+		<div class="col-md-4 text-center company__info">
+			<h1>Tickr</h1>
+			<span class="company__logo"><h2><span class="fa fa-android">
+				<img src="../../../assets/images/login.png" alt="company-svg">
+			</span></h2>
+			</span>
+		</div>
+		<div class="col-md-8 col-xs-12 col-sm-12 login_form ">
+			<div class="container-fluid">
+				<div class="row">
+					<h2>Log In</h2>
+				</div>
+				<div class="row">
+					<form  class="form-group" #userForm = "ngForm" (ngSubmit)="onUserLogin()">
+						<div class="row input-field">
+							<input type="text" name="username" id="username" class="form__input" placeholder="Username" [(ngModel)]="user.username">
+						</div>
+						<div class="row input-field">
+							<input type="password" name="password" id="password" class="form__input" placeholder="Password" [(ngModel)]="user.password">
+						</div>
+						<div class="row input-field">
+							<button id="signin" type="submit" value="submit" class="btn"> 
+								Log In
+							</button>
+						</div>
+						<!-- <ngx-recaptcha2 #captchaElem
+							[siteKey]="siteKey"
+							formControlName="recaptcha">
+						</ngx-recaptcha2> -->
+					</form>
+
+				</div>
+				<div class="row input-field">
+					<p>Don't have an account? <a href="/signup">Register Here</a></p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

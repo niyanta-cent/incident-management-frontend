@@ -1,0 +1,48 @@
+<style>
+.mat-form-field-appearance-fill .mat-form-field-flex {
+    border-radius: 4px 4px 0 0;
+    padding: .75em .75em 0 .75em;
+    margin: auto;
+    min-width: 300px;
+}
+</style>
+<p>Register an incident</p>
+<form [formGroup]="incidentForm" (ngSubmit)="onIncidentRegistration()">
+    
+    <mat-form-field appearance="fill">
+        <mat-label>Incident Type</mat-label>
+        <mat-select required ngModel formControlName="incidentType" [(ngModel)]="user.incidentType">
+            <mat-option value="Software">Software</mat-option>
+            <mat-option value="Hardware">Hardware</mat-option>
+            <mat-option value="Network">Network</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+        <mat-label>Describe your issue</mat-label>
+        <textarea required matInput formControlName="incidentDescription" [(ngModel)]="user.incidentDescription"></textarea>  
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+        <mat-label>Incident Priority</mat-label>
+        <mat-select required ngModel formControlName="incidentPriority" [(ngModel)]="user.incidentPriority">
+            <mat-option value="Low">Low</mat-option>
+            <mat-option value="Medium">Medium</mat-option>
+            <mat-option value="High">High</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+        <mat-label>Contact Number</mat-label>
+        <input required matInput formControlName="contactNumber" [(ngModel)]="user.contactNumber">
+    </mat-form-field>
+    <!-- <mat-form-field appearance="fill">
+        <mat-label>Department</mat-label>
+        <textarea matInput ngModel formControlName="incidentPriority" [(ngModel)]="user.incidentPriority"></textarea>
+    </mat-form-field> -->
+    <br>
+    <mat-dialog-actions>
+        <button mat-button type="submit" mat-dialog-close>Submit</button>
+        <button mat-button mat-dialog-close>Cancel</button>
+    </mat-dialog-actions>
+</form>

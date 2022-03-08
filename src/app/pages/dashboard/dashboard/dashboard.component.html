@@ -1,0 +1,258 @@
+<!-- <h1>Dashboard page</h1>
+<button mat-raised-button>Hello Mumbai</button> -->
+<div class="dashboard-container">
+  <mat-grid-list
+    cols="3"
+    rowHeight="200px"
+    gutterSize="10px"
+    style="margin: 20px"
+  >
+    <mat-grid-tile>
+      <h6 class="incident-txt" style="font-weight: bolder">{{ content }}</h6>
+    </mat-grid-tile>
+    <mat-grid-tile class="middle-tile">
+      <!-- <div>
+        <h6 class="team-stats-txt" style="font-size: 13px"></h6>
+
+        <div class="team-stats-table" style="font-size: 12px">
+          <table class="table">
+            <tbody>
+              <tr>
+                <th scope="row">Overall</th>
+                <td>15</td>
+              </tr>
+              <tr>
+                <th scope="row">Open</th>
+                <td>5</td>
+              </tr>
+              <tr>
+                <th scope="row">In Process</th>
+                <td>3</td>
+              </tr>
+              <tr>
+                <th scope="row">Resolved</th>
+                <td>7</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div> -->
+
+      <div class="stats-style" id="overall-style">
+        <h6>Overall</h6>
+        <h3>{{ incidents }}</h3>
+      </div>
+      <div class="stats-style" id="open-style">
+        <h6>Open</h6>
+        <h3>{{ pending + inProcess }}</h3>
+      </div>
+      <div class="stats-style" id="inprocess-style">
+        <h6>In Process</h6>
+        <h3>{{ inProcess }}</h3>
+      </div>
+      <div class="stats-style" id="resolved-style">
+        <h6>Resolved</h6>
+        <h3>{{ closed }}</h3>
+      </div>
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+      <div class="bg-circle">
+        <h6 class="user-satisfaction-txt">User Satisfaction</h6>
+        <div class="user-satisfaction-circle">
+          <div
+            class="value"
+            style="
+              padding-left: 10px;
+              padding-top: 22px;
+              font-weight: bolder;
+              font-size: large;
+            "
+          >
+            {{ status }} %
+          </div>
+        </div>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+
+  <!-- <mat-form-field>
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Filter" #input>
+  </mat-form-field> -->
+  
+  <button (click)="(openCreateDialogBox())" 
+    mat-flat-button class="create-button">
+    <mat-icon style="margin-right: 3px"> add_circle_outline </mat-icon>Register
+    an Incident
+  </button>
+
+  <button
+    mat-flat-button
+    class="create-button filter-button"
+    [matMenuTriggerFor]="menu"
+  >
+    Filter
+    <mat-icon> filter_alt </mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="filterOnlyActive()">
+      <mat-icon>notifications</mat-icon>
+      <span>Only Active</span>
+    </button>
+    <button mat-menu-item (click)="showAll()">
+      <mat-icon>apps</mat-icon>
+      <span>Show All</span>
+    </button>
+  </mat-menu>
+
+  <div class="mat-elevation-z8">
+    <mat-table [dataSource]="dataSource" matSort>
+      <ng-container matColumnDef="incidentRecordNumber">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          <span class="table-data header-style">Record Number</span>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <span class="table-data">{{ element.incidentRecordNumber }}</span>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="userName">
+        <mat-header-cell *matHeaderCellDef>
+          <span class="table-data header-style">Username</span>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <div class="table-data">
+            {{ element.userName }}
+          </div>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="contactNumber">
+        <mat-header-cell *matHeaderCellDef>
+          <span class="table-data header-style"> Contact Number </span>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <span class="table-data">{{ element.contactNumber }}</span>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="incidentType">
+        <mat-header-cell *matHeaderCellDef>
+          <span class="table-data header-style">Incident Type</span>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <span class="table-data">{{ element.incidentType }}</span>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="incidentPriority">
+        <mat-header-cell *matHeaderCellDef>
+          <span class="table-data header-style"> Incident Priority</span>
+        </mat-header-cell>
+        <mat-cell
+          *matCellDef="let element"
+          [ngStyle]="
+            element.incidentPriority == 'High'
+              ? highPriority
+              : element.incidentPriority == 'Medium'
+              ? mediumPriority
+              : lowPriority
+          "
+        >
+          <span class="table-data">{{ element.incidentPriority }}</span>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="incidentStatus">
+        <mat-header-cell *matHeaderCellDef>
+          <span class="table-data header-style"> Incident Status </span>
+        </mat-header-cell>
+        <mat-cell
+          *matCellDef="let element"
+          [ngStyle]="
+            element.incidentStatus == 'NEW'
+              ? newStatus
+              : element.incidentStatus == 'IN-PROGRESS'
+              ? inProgressStatus
+              : element.incidentStatus == 'DISPATCHED'
+              ? dispatchedStatus
+              : closedStatus
+          "
+        >
+          <span class="table-data">{{ element.incidentStatus }}</span>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="createdOn">
+        <mat-header-cell *matHeaderCellDef>
+          <span class="table-data header-style"> Created On</span>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <span class="table-data">{{ element.createdOn }} </span>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef>
+          <span class="table-data header-style"> Actions </span>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <div style="align-items: center;">
+          <button
+            *ngIf="element.incidentStatus !== 'CLOSED'"
+            id="{{ element.incidentRecordNumber }}"
+            (click)="openEditDialogBox(element.incidentRecordNumber)"
+            class="action-buttons"
+            matTooltip="Edit ticket"
+            
+          >
+          <mat-icon class="action-buttons-icons"> edit </mat-icon>
+            
+          </button>
+
+          <button
+            *ngIf="element.incidentStatus !== 'CLOSED'"
+            class="action-buttons"
+            matTooltip="View Description"
+            (click)="onViewDescClick(element.incidentRecordNumber)"
+          >
+          <mat-icon class="action-buttons-icons"> visibility </mat-icon>
+            
+          </button>
+          <!-- *ngIf="element.incidentStatus !== 'CLOSED'" -->
+          <button
+            
+            class="action-buttons"
+            matTooltip="Show Audit"
+            (click)="onShowAuditClick(element.incidentRecordNumber)"
+          >
+          <mat-icon class="action-buttons-icons"> analytics </mat-icon>
+            
+          </button>
+
+          <button
+            *ngIf="element.incidentStatus !== 'CLOSED' && isuserTypeAdmin == true"
+            (click)="closeTicketDialogBox(element.incidentRecordNumber)"
+            class="action-buttons"
+            matTooltip="Close ticket"
+            
+            
+          >
+          <mat-icon class="action-buttons-icons"> check_circle </mat-icon>
+            
+          </button>
+          
+          </div>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    </mat-table>
+    <mat-paginator
+      [pageSizeOptions]="[5, 10, 25, 100]"
+      showFirstLastButtons
+    ></mat-paginator>
+  </div>
+</div>

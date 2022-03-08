@@ -1,0 +1,20 @@
+<p>Description</p>
+<span *ngIf="!isDataLoaded">Loading...</span>
+<form >
+    
+    <mat-form-field appearance="fill">
+        <mat-label>Record Number</mat-label>
+        <!-- <input matInput formControlName="incidentRecordNumber" name="incidentRecordNumber" [(ngModel)]= "incident.incidentRecordNumber"> -->
+        <input matInput type="text" [disabled]="true" name="incidentRecordNumber" [(ngModel)]= "incident.incidentRecordNumber">
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+        <mat-label>Description</mat-label>
+        <textarea matInput [disabled]="true" name="incidentDescription" [(ngModel)]= "incident.incidentDescription"></textarea>  
+    </mat-form-field>
+    <br>
+    <mat-dialog-actions>
+        
+        <button mat-button mat-dialog-close>Cancel</button>
+    </mat-dialog-actions>
+</form>
